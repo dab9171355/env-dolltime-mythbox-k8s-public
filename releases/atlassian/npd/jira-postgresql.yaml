@@ -1,0 +1,21 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: jira-postgresql
+  namespace: atlassian-npd
+  annotations:
+    fluxcd.io/tag.chart-image: glob:8.9.*
+    fluxcd.io/automated: 'true'
+spec:
+  releaseName: jira-postgresql
+  chart:
+    git: https://github.com/bitnami/charts
+    ref: master
+    path: /bitnami/postgresql
+  values:
+    postgresqlDatabase: jiradb
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 11-debian-10

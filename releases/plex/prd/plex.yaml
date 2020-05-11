@@ -1,0 +1,30 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: plex
+  namespace: plex-prd
+  annotations:
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.chart-image: glob:1.*
+spec:
+  releaseName: plex
+  chart:
+#    git: ssh://APKARQMOF42EGBWJQZPD@git-codecommit.ap-southeast-2.amazonaws.com/v1/repos/env-dolltime-mythbox-k8s
+    git: ssh://git@github.com/dab9171355/flux-get-started
+    ref: master
+    path: charts/plex
+  values:
+    image:
+      repository: plexinc/pms-docker
+      tag: 1.19.3.2764-ef515a800
+      env:
+        plexUid: "1000"
+        plexGid: "44"
+        tz: "Australia/Melbourne"
+    service:
+      type: NodePort
+    volumes:
+      config: "/var/lib/plexmediaserver"
+      transcode: "/tmp"
+      data: "/home/dab/videos"
