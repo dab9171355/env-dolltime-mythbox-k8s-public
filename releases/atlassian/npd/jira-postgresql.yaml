@@ -19,3 +19,6 @@ spec:
     registry: docker.io
     repository: bitnami/postgresql
     tag: 11-debian-10
+  persistence:
+    enabled: true
+    storageClass: jira-postgresql-data
