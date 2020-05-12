@@ -15,8 +15,9 @@ spec:
     path: /bitnami/postgresql
   values:
     postgresqlDatabase: jiradb
-    persistence:
-      storageClass: jira-postgresql-data
+    global:
+      postgresql: {}
+        storageClass: jira-postgresql-data
   image:
     registry: docker.io
     repository: bitnami/postgresql
