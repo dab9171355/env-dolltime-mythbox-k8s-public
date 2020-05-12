@@ -5,7 +5,6 @@ metadata:
   labels:
     type: local
     name: jira-postgresql-data
-    testLabelDepoyed: true
 spec:
   storageClassName: jira-postgresql-data
   capacity:
