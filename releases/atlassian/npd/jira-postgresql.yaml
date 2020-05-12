@@ -16,7 +16,6 @@ spec:
   values:
     postgresqlDatabase: jiradb
     persistence:
-      enabled: true
       storageClass: jira-postgresql-data
   image:
     registry: docker.io

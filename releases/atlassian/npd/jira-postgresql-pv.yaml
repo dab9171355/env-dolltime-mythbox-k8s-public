@@ -5,12 +5,12 @@ metadata:
   labels:
     type: local
     name: jira-postgresql-data
+    testLabelDepoyed: true
 spec:
   storageClassName: jira-postgresql-data
   capacity:
     storage: 8Gi
   accessModes:
     - ReadWriteOnce
-  volumeMode: Filesystem
   hostPath:
     path: /home/k8s/jira-postgresql-data
