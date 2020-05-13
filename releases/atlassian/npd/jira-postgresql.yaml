@@ -12,7 +12,7 @@ spec:
   chart:
     git: https://github.com/bitnami/charts
     ref: master
-    path: /bitnami/postgresql
+    path: bitnami/postgresql
   values:
     postgresqlDatabase: jiradb
     persistence:

@@ -12,7 +12,7 @@ spec:
   chart:
     git: https://github.com/dab9171355/helm-charts
     ref: master
-    path: /charts/jira-software
+    path: charts/jira-software
   values:
     image:
       tag: 8.8.1
