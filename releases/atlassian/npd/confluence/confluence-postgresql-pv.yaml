@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: confluence-postgresql-data
+  labels:
+    type: local
+    name: confluence-postgresql-data
+spec:
+  storageClassName: confluence-postgresql-data
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /home/k8s/confluence-postgresql-data

@@ -3,4 +3,4 @@ The contents of this directory should not be committed to the repo, as it contai
 
 Manually load secrets into Kubernetes with the following:
 
-```kubectl apply -f jira-secrets.yaml```
+```kubectl apply -f *.yaml```
