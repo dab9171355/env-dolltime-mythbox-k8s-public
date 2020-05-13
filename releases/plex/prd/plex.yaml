@@ -6,12 +6,13 @@ metadata:
   namespace: plex-prd
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: glob:1.*
+    fluxcd.io/tag.chart-image: glob:*
 spec:
   releaseName: plex
   chart:
 #    git: ssh://APKARQMOF42EGBWJQZPD@git-codecommit.ap-southeast-2.amazonaws.com/v1/repos/env-dolltime-mythbox-k8s
-    git: ssh://git@github.com/dab9171355/flux-get-started
+#    git: ssh://git@github.com/dab9171355/env-dolltime-mythbox-k8s-public
+    git: https://github.com/dab9171355/env-dolltime-mythbox-k8s-public
     ref: master
     path: charts/plex
   values:

@@ -5,8 +5,8 @@ metadata:
   name: jira-postgresql
   namespace: atlassian-npd
   annotations:
-    fluxcd.io/tag.chart-image: glob:8.9.6
     fluxcd.io/automated: 'true'
+    fluxcd.io/tag.chart-image: glob:8.9.*
 spec:
   releaseName: jira-postgresql
   chart:
@@ -15,11 +15,5 @@ spec:
     path: /bitnami/postgresql
   values:
     postgresqlDatabase: jiradb
-    global:
+    persistence:
       storageClass: jira-postgresql-data
-#    persistence:
-#      storageClass: jira-postgresql-data
-  image:
-    registry: docker.io
-    repository: bitnami/postgresql
-    tag: 11-debian-10
