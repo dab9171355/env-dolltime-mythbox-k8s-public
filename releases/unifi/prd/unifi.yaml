@@ -1,0 +1,21 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: unifi
+  namespace: unifi-prd
+  annotations:
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.chart-image: glob:*
+spec:
+  releaseName: unifi
+  chart:
+#    git: ssh://APKARQMOF42EGBWJQZPD@git-codecommit.ap-southeast-2.amazonaws.com/v1/repos/env-dolltime-mythbox-k8s
+#    git: ssh://git@github.com/dab9171355/env-dolltime-mythbox-k8s-public
+    git: https://github.com/helm/charts
+    ref: master
+    path: stable/unifi
+  values:
+    image:
+      repository: jacobalberty/unifi
+      tag: 5.12.35

@@ -15,7 +15,7 @@ spec:
     path: charts/confluence-server
   values:
     image:
-      tag: 7.4.0
+      tag: 7.5.0
     service:
       type: NodePort
     persistence:
