@@ -14,8 +14,8 @@ spec:
     ref: master
     path: charts/jira-software
   values:
-    image:
-      tag: 8.9.1
+#    image:
+#      tag: 8.9.1
     service:
       type: NodePort
     persistence:
