@@ -3,46 +3,43 @@ kind: PersistentVolume
 metadata:
   name: plex-config
   labels:
+    name: config
     type: local
-    name: plex-config
 spec:
-  storageClassName: plex-config
+  storageClassName: config
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "{{ .Values.volumes.config }}"
+    path: "/var/lib/plexmediaserver"
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: plex-transcode
   labels:
+    name: transcode
     type: local
-    name: plex-transcode
 spec:
-  storageClassName: plex-transcode
+  storageClassName: transcode
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "{{ .Values.volumes.transcode }}"
+    path: "/tmp"
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: plex-data
   labels:
+    name: data
     type: local
-    name: plex-data
-  selector:
 spec:
-  storageClassName: plex-data
+  storageClassName: data
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "{{ .Values.volumes.data }}"

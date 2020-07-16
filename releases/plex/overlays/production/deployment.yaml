@@ -1,0 +1,6 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pms
+  annotations:
+    fluxcd.io/tag.podinfod: "prd-plex"

@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: prd-plex
+namePrefix: prd-
+
+commonLabels:
+  env: production
+
+bases:
+  - ../../base
+
+patchesStrategicMerge:
+  - deployment.yaml
+  - persistentvolume.yaml
+  - persistentvolumeclaim.yaml

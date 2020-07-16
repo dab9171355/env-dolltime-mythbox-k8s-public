@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pms
+  annotations:
+    fluxcd.io/automated: "true"
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      role: pms
+  template:
+    metadata:
+      labels:
+        role: pms
+    spec:
+      containers:
+        - name: pms
+          image: plexinc/pms-docker:latest
+          imagePullPolicy: Always
+          ports:
+            - name: pms-tcp
+              protocol: TCP
+              containerPort: 32400
+            - name: pms-udp-gdm1
+              protocol: UDP
+              containerPort: 32400
+            - name: pms-udp-gdm2
+              protocol: UDP
+              containerPort: 32400
+            - name: pms-udp-gdm3
+              protocol: UDP
+              containerPort: 32400
+            - name: pms-udp-gdm4
+              protocol: UDP
+              containerPort: 32400
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          env:
+            - name: PLEX_CLAIM
+              valueFrom:
+                secretKeyRef:
+                  name: plex-secrets
+                  key: plex-claim
+            - name: PLEX_UID
+              value: "1000"
+            - name: PLEX_GID
+              value: "44"
+            - name: TZ
+              value: "Australia/Melbourne"
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /transcode
+              name: transcode
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: plex-config
+        - name: transcode
+          persistentVolumeClaim:
+            claimName: plex-transcode
+        - name: data
+          persistentVolumeClaim:
+            claimName: plex-data

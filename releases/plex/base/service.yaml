@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pms
+spec:
+  type: NodePort
+#  externalIPs: [192.168.1.10]
+  selector:
+    app: plex
+    role: pms
+  ports:
+    - name: pms-tcp
+      port: 32400
+      protocol: TCP
+      targetPort: pms-tcp
+      nodePort: 32400
+    - name: pms-udp-gdm1
+      port: 32410
+      protocol: UDP
+      targetPort: pms-udp-gdm1
+    - name: pms-udp-gdm2
+      port: 32412
+      protocol: UDP
+      targetPort: pms-udp-gdm2
+    - name: pms-udp-gdm3
+      port: 32413
+      protocol: UDP
+      targetPort: pms-udp-gdm3
+    - name: pms-udp-gdm4
+      port: 32414
+      protocol: UDP
+      targetPort: pms-udp-gdm4
